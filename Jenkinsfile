@@ -19,8 +19,8 @@ pipeline {
                 withCredentials([string(credentialsId: 'snyk-api-token-string', variable: 'SNYK_TOKEN')]) {
                     sh '''
                         export PATH=$PATH:/var/lib/jenkins/tools/io.snyk.jenkins.tools.SnykInstallation/snyk
-                        snyk auth $SNYK_TOKEN
-                        snyk iac test --org=$SNYK_ORG --severity-threshold=high || true
+                        snyk-linux auth $SNYK_TOKEN
+                        snyk-linux iac test --org=$SNYK_ORG --severity-threshold=high || true
                     '''
                 }
             }
